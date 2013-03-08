@@ -37,6 +37,11 @@ namespace DELTA_Patcher.Command_Line
                         Patcher.FinishPatchingApplicationsInStorage();
                         break;
                     }
+                case "experiment":
+                    {
+                        Experimenter.StartExperiment(calledCommand.MandatoryParametersValues[0]);
+                        break;
+                    }
                 case "test":
                     {
                         Experimenter.StartExperiment("DELTA.experiment");
