@@ -28,22 +28,35 @@ namespace DELTA_Patcher
 
             var patchingAlgorithm = PatchingAlgorithmFactory.ConstructAlgorithm(experimentOptions.PatchingAlgorithm);
 
-            foreach (var appInExperiment in experimentOptions.AppsInExperiment)
+            using (var writer = new StreamWriter(Path.Combine(experimentOptions.StatDir, NAME_STAT_FILE), false))
             {
-                Console.Write(String.Format("Processing {0} ... ", appInExperiment.PackageName));
-
-                var listAppPackages = StorageManager.GetLatestAppPackages(appInExperiment.PackageName,
-                                                                            appInExperiment.NumOfLatestVersionsToUse);
-
-                for (int i = 0; i < listAppPackages.Count - 1; ++i)
+                foreach (var appInExperiment in experimentOptions.AppsInExperiment)
                 {
-                    var reference = listAppPackages[i];
-                    var target = listAppPackages[i + 1];
-                    var pathCurPatch = Path.Combine(experimentOptions.OutputDir,
-                                                    NamingHelper.GetPatchName(reference, target));
-                    patchingAlgorithm.ComputePatch(reference, target, pathCurPatch);
+                    writer.Write(appInExperiment.PackageName);
+
+                    Console.Write(String.Format("Processing {0} ... ", appInExperiment.PackageName));
+
+                    var listAppPackages = StorageManager.GetLatestAppPackages(appInExperiment.PackageName,
+                                                                                appInExperiment.NumOfLatestVersionsToUse);
+
+                    for (int i = 0; i < listAppPackages.Count - 1; ++i)
+                    {
+                        var reference = listAppPackages[i];
+                        var target = listAppPackages[i + 1];
+                        var pathCurPatch = Path.Combine(experimentOptions.OutputDir,
+                                                        NamingHelper.GetPatchName(reference, target));
+                        
+                        patchingAlgorithm.ComputePatch(reference, target, pathCurPatch);
+
+                        double patchSizeInPercent = (double)FileManager.GetFileSize(pathCurPatch) / FileManager.GetFileSize(target.PackagePath);
+
+                        writer.Write(String.Format(",{0}", patchSizeInPercent));
+                    }
+
+                    writer.WriteLine();
+
+                    Console.WriteLine("--- DONE");
                 }
-                Console.WriteLine("--- DONE");
             }
         }
 
