@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{890EC6DC-F331-4BD6-91B3-665413011F35}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{B279AECC-E4F1-4520-BA0E-37901E54C3C1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DELTA_Patcher</RootNamespace>
-    <AssemblyName>DELTA_Patcher</AssemblyName>
+    <RootNamespace>DELTA_Experimenter</RootNamespace>
+    <AssemblyName>DELTA_Experimenter</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -33,10 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Command_Line_Parser">
+      <HintPath>lib\Command_Line_Parser.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,27 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Algorithms\AndroidDELTAPlusPlusAlgorithm.cs" />
-    <Compile Include="src\Algorithms\DELTAAlgorithm.cs" />
-    <Compile Include="src\Algorithms\BSDIFFDeltaEncodingAlgortihm.cs" />
-    <Compile Include="src\DataModel\AndroidApplicationManifest.cs" />
-    <Compile Include="src\DataModel\AndroidApplicationManifestRecord.cs" />
-    <Compile Include="src\DataModel\EnumPatchingAlgorithms.cs" />
-    <Compile Include="src\DataModel\ICopyable.cs" />
-    <Compile Include="src\DataModel\IDeltaEncodingAlgorithm.cs" />
-    <Compile Include="src\DataModel\IPatchingAlgorithm.cs" />
-    <Compile Include="src\DataModel\PatchComputationOptions.cs" />
-    <Compile Include="src\DataModel\EnumPatchComputedBetweenOptions.cs" />
-    <Compile Include="src\DataModel\PatchManifest.cs" />
-    <Compile Include="Patcher.cs" />
-    <Compile Include="PatchingAlgorithmFactory.cs" />
+    <Compile Include="src\CommandLine\ApplicationCommandLine.cs" />
+    <Compile Include="src\DataModel\ApplicationInExperiment.cs" />
+    <Compile Include="src\DataModel\ExperimentOptions.cs" />
+    <Compile Include="src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Utils\AndroidPackageManager.cs" />
+    <Compile Include="src\Experimenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DELTA_Common\DELTA_Common.csproj">
       <Project>{FAEB0D9A-6D62-4EBC-973A-BD2A5F5473BE}</Project>
       <Name>DELTA_Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DELTA_Patcher\DELTA_Patcher.csproj">
+      <Project>{890EC6DC-F331-4BD6-91B3-665413011F35}</Project>
+      <Name>DELTA_Patcher</Name>
     </ProjectReference>
     <ProjectReference Include="..\DELTA_Storage\DELTA_Storage.csproj">
       <Project>{A022128C-0DFC-42D0-913C-3053FE951DE5}</Project>

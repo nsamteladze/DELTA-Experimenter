@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using DELTA_Patcher.Data_Model;
+﻿using DELTA_Patcher.Algorithms;
+using DELTA_Patcher.DataModel;
 
 namespace DELTA_Patcher
 {
@@ -13,7 +10,7 @@ namespace DELTA_Patcher
             switch (algorithm)
             {
                 case EnumPatchingAlgorithms.DELTA: 
-                    return new AndroidDELTAAlgorithm();
+                    return new DELTAAlgorithm();
                 default:
                     return null;
             }
