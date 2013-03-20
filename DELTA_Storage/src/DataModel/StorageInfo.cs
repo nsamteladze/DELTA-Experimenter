@@ -48,17 +48,16 @@ namespace DELTA_Storage.DataModel
         }
 
         // TODO: Document
-        public void AddApplication(string appName)
+        public void AddAppPackage(string appPackageName)
         {
             int numVersions;
 
-
-            if (AppsInStorage.TryGetValue(appName, out numVersions))
+            if (AppsInStorage.TryGetValue(appPackageName, out numVersions))
             {
                 numVersions += 1;
-                AppsInStorage[appName] = numVersions;
+                AppsInStorage[appPackageName] = numVersions;
             }
-            else AppsInStorage.Add(appName, 1);
+            else AppsInStorage.Add(appPackageName, 1);
         }
     }
 }

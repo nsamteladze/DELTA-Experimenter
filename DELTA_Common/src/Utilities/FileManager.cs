@@ -213,7 +213,7 @@ namespace DELTA_Common.Utilities
         }
 
         /// <summary>
-        /// Checks whether the path is valid.
+        /// Checks whether the path is valid. Don't check wether the file exists.
         /// </summary>
         /// <param name="pathToCheck"></param>
         /// <returns></returns>

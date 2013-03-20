@@ -50,6 +50,7 @@
     <Compile Include="src\DataModel\StorageInfo.cs" />
     <Compile Include="src\DataModel\StoredAppInfo.cs" />
     <Compile Include="src\StorageManager.cs" />
+    <Compile Include="src\StorageOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DELTA_Common\DELTA_Common.csproj">

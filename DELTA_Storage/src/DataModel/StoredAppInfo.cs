@@ -12,9 +12,9 @@ namespace DELTA_Storage.DataModel
         #region Properties
 
         [XmlElement("name")]
-        public string AppName { get; set; }
+        public string AppPackageName { get; set; }
         [XmlElement("label")]
-        public string AppLabel { get; set; }
+        public string AppName { get; set; }
         [XmlElement("versions")]
         public SerializableDictionary<long, string> AppVersions { get; set; }
 
@@ -25,30 +25,30 @@ namespace DELTA_Storage.DataModel
         // Private parametless contructor is required for serialization
         private StoredAppInfo()
         {
+            AppPackageName = String.Empty;
             AppName = String.Empty;
-            AppLabel = String.Empty;
             AppVersions = new SerializableDictionary<long, string>();
         }
 
-        public StoredAppInfo(string appName, string appLabel, IDictionary<long, string> appVersions)
+        public StoredAppInfo(string appPackageName, string appName, IDictionary<long, string> appVersions)
         {
+            AppPackageName = appPackageName;
             AppName = appName;
-            AppLabel = appLabel;
             AppVersions = new SerializableDictionary<long, string>(appVersions);
         }
 
-        public StoredAppInfo(string appName, string appLabel)
+        public StoredAppInfo(string appPackageName, string appName)
         {
+            AppName = appPackageName;
             AppName = appName;
-            AppLabel = appLabel;
             AppVersions = new SerializableDictionary<long, string>();
         }
 
         #endregion Constructors
 
-        public void AddVersion(long appVersion, string apkFileName)
+        public void AddVersion(long appVersion, string appPackageFileName)
         {
-            AppVersions.Add(appVersion, apkFileName);
+            AppVersions.Add(appVersion, appPackageFileName);
         }
 
         // TODO: Document
